@@ -60,6 +60,8 @@ app.post("/register", async (req, res) => {
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
       [name, email, hashedPassword]
     );
+    console.log(hashedPassword, name);
+
     res.status(201).send("User registered");
   } catch (err) {
     console.error("Error during registration:", err);
@@ -155,7 +157,7 @@ app.post("/delete-users", async (req, res) => {
       userIds,
     ]);
     res.json({
-      message: `${result.affectedRows} user(s) deleted successfully`,
+      message: `${result} user(s) deleted successfully`,
     });
   } catch (error) {
     console.error("Delete users error:", error);
